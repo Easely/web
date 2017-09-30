@@ -10,7 +10,7 @@
       <h1>Current Assignments</h1>
       <div class="row">
         <template v-for="assignment in courseAssignments">
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">{{ assignment.name }}</h4>

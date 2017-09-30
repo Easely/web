@@ -10,12 +10,15 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
+            <router-link class="nav-link" :to="{ name: 'Home' }">Home</router-link>
           </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <router-link class="nav-link" :to="{ name: 'Login' }">Login</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'Register' }">Register</router-link>
           </li>
         </ul>
       </div>

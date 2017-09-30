@@ -5,7 +5,7 @@
         <div class="card-body">
           <h4 class="card-title">{{ course.code.toUpperCase() }} - {{ course.name }}</h4>
           <h6 class="card-subtitle mb-2 text-muted">Professor name</h6>
-          <a href="#" class="card-link">Details</a>
+          <router-link :to="{ name: 'Course Details', params: { 'id': course.id } }" class="card-link">Details</router-link>
         </div>
       </div>
     </template>

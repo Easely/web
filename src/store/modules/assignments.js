@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 const state = {
-  assignments: []
+  assignments: {}
 };
 
 const mutations = {
@@ -13,9 +13,9 @@ const mutations = {
 const actions = {
   getAssignments (context) {
     Vue.http.get('/api/assignments').then(response => {
-      let items = [];
+      let items = {};
       response.body.forEach(function (item) {
-        items.push(item);
+        items[item.id] = item;
       });
       context.commit('setAssignments', items);
     }, response => {

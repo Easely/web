@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 const state = {
-  courses: []
+  courses: {}
 };
 
 const mutations = {
@@ -13,9 +13,9 @@ const mutations = {
 const actions = {
   getCourses (context) {
     Vue.http.get('/api/courses').then(response => {
-      let items = [];
+      let items = {};
       response.body.forEach(function (item) {
-        items.push(item);
+        items[item.id] = item;
       });
       context.commit('setCourses', items);
     }, response => {

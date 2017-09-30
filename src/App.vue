@@ -12,6 +12,17 @@
     name: 'App',
     components: {
       AppNavbar
+    },
+    method: {
+      updateData: function () {
+        // TODO call this function in created
+        this.$store.dispatch('getAssignments');
+        this.$store.dispatch('getCourses');
+      }
+    },
+    created: function () {
+      this.$store.dispatch('getAssignments');
+      this.$store.dispatch('getCourses');
     }
   };
 </script>

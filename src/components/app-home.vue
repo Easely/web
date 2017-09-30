@@ -5,7 +5,7 @@
         <div class="col">
           <course-cards></course-cards>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
           <h3>Upcoming Assignments</h3>
             <assignment-list :assignments="upcomingAssignments"></assignment-list>
         </div>
@@ -15,19 +15,16 @@
 </template>
 
 <script>
-  import AppCalendar from './app-calendar.vue';
   import AssignmentList from './assignments/assignment-list.vue';
-  import CourseList from './courses/course-list.vue';
-  import App from "../App.vue";
-  import CourseCards from "./courses/course-cards.vue";
+  import CourseCards from './courses/course-cards.vue';
+
+  import Helpers from '../helpers';
 
   export default {
     name: 'Home',
     components: {
       CourseCards,
-      AppCalendar,
-      AssignmentList,
-      CourseList
+      AssignmentList
     },
     computed: {
       assignments: function () {
@@ -44,7 +41,7 @@
         let nextWeek = new Date();
         nextWeek.setDate(nextWeek.getDate() + 7);
 
-        assignments.forEach(function (assignment) {
+        Helpers.objectToArray(assignments).forEach(function (assignment) {
           let assignmentDate = new Date(assignment.date.year, assignment.date.monthValue - 1, assignment.date.dayOfMonth);
 
           if (assignmentDate.getTime() > today.getTime()) {
@@ -55,17 +52,6 @@
         });
         return upcomingAssignments;
       }
-    },
-    method: {
-      updateData: function () {
-        // TODO call this function in created
-        this.$store.dispatch('getAssignments');
-        this.$store.dispatch('getCourses');
-      }
-    },
-    created: function () {
-      this.$store.dispatch('getAssignments');
-      this.$store.dispatch('getCourses');
     }
   }
 </script>

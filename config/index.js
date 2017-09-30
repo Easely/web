@@ -6,7 +6,7 @@ var proxyUrl;
 if (process.env.NODE_ENV === 'production') {
   proxyUrl = 'https://easely-api.shepherdjerred.com'
 } else {
-  proxyUrl = 'http://localhost:8080'
+  proxyUrl = process.env.API_URL || 'http://localhost:8080'
 }
 
 module.exports = {

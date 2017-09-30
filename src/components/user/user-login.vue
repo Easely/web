@@ -35,7 +35,7 @@
     methods: {
       onSubmit: function () {
         this.$http.post('/api/user/login', {
-          'username': this.username,
+          'email': this.email,
           'password': this.password
         }).then(response => {
           console.log(response.body);

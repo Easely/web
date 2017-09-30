@@ -1,5 +1,7 @@
 # easely-web
 
+[![Build Status](https://travis-ci.org/Easely/web.svg?branch=master)](https://travis-ci.org/Easely/web)
+
 > A Vue.js project
 
 ## Build Setup

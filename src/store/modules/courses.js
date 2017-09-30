@@ -12,7 +12,9 @@ const mutations = {
 
 const actions = {
   getCourses (context) {
-    Vue.http.get('/api/courses').then(response => {
+    Vue.http.get('/api/courses', {
+      'jwt': localStorage.getItem('jwt')
+    }).then(response => {
       let items = {};
       response.body.forEach(function (item) {
         items[item.id] = item;

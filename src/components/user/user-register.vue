@@ -30,9 +30,10 @@
 
         <div class="form-group">
           <label for="easelUsername">EASEL username</label>
-          <input id="easelUsername" type="text" class="form-control">
+          <input id="easelUsername" type="text" class="form-control" v-model="easelUsername" required>
+
           <label for="easelPassword">EASEL password</label>
-          <input type="password" class="form-control">
+          <input type="password" class="form-control" v-model="easelPassword" required>
           <small id="easelPassword" class="form-text text-muted">
             We need your EASEL credentials to load your classes, assignments, and grades from the EASEL website.
           </small>

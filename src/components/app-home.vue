@@ -2,12 +2,29 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col">
-          <course-cards></course-cards>
+        <div class="col-sm-8">
+          <div class="row">
+            <template v-for="course in courses">
+              <div class="col-sm-6">
+                <div class="card courseCard">
+                  <div class="card-body">
+                    <h4 class="card-title">{{ course.name }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ course.code.toUpperCase() }}</h6>
+                    <router-link :to="{ name: 'Course Details', params: { 'id': course.id } }" class="card-link">Details
+                    </router-link>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col">
           <h3>Upcoming Assignments</h3>
-            <assignment-list :assignments="upcomingAssignments"></assignment-list>
+          <ul>
+            <template v-for="assignment in upcomingAssignments">
+              <li><router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }" class="card-link">{{ assignment.name }}</router-link></li>
+            </template>
+          </ul>
         </div>
       </div>
     </div>
@@ -15,17 +32,10 @@
 </template>
 
 <script>
-  import AssignmentList from './assignments/assignment-list.vue';
-  import CourseCards from './courses/course-cards.vue';
-
   import Helpers from '../helpers';
 
   export default {
     name: 'Home',
-    components: {
-      CourseCards,
-      AssignmentList
-    },
     computed: {
       assignments: function () {
         return this.$store.state.Assignments.assignments;
@@ -57,5 +67,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .courseCard {
+    margin-top: 10px;
+  }
 </style>

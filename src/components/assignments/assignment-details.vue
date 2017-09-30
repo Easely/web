@@ -3,10 +3,11 @@
     <div class="jumbotron">
       <div class="container">
         <h1 class="display-3">{{ assignment.name }}</h1>
+        <a class="btn btn-primary" :href="'https://cs.harding.edu/easel/cgi-bin/view?id=' + assignment.id" role="button">Open on EASEL</a>
       </div>
     </div>
     <div class="container">
-      
+
     </div>
   </div>
 </template>

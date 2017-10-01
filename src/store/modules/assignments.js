@@ -1,12 +1,14 @@
 import Vue from 'vue';
 
 const state = {
-  assignments: {}
+  assignments: {},
+  isLoaded: false
 };
 
 const mutations = {
   setAssignments (state, value) {
     state.assignments = value;
+    state.isLoaded = true;
   }
 };
 

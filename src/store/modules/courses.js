@@ -1,12 +1,14 @@
 import Vue from 'vue';
 
 const state = {
-  courses: {}
+  courses: {},
+  isLoaded: false
 };
 
 const mutations = {
   setCourses (state, value) {
     state.courses = value;
+    state.isLoaded = true;
   }
 };
 

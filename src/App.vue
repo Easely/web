@@ -22,8 +22,6 @@
     },
     created: function () {
       this.$store.dispatch('updateUser');
-      this.$store.dispatch('getAssignments');
-      this.$store.dispatch('getCourses');
     }
   };
 </script>

@@ -3,12 +3,22 @@
     <div class="jumbotron">
       <div class="container">
         <h1 class="display-3">{{ email }}</h1>
-        <br>
-        <button class="btn btn-primary" v-on:click="onClick()">Log out</button>
       </div>
     </div>
-    <h1></h1>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-11 col-md-2">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
+            <router-link :to="{ name: 'User Edit' }" class="nav-link" activeClass="active">Account</router-link>
+            <router-link :to="{ name: 'User EASEL' }" class="nav-link" activeClass="active">EASEL Credentials</router-link>
+            <a class="nav-link" href="" v-on:click="onClick()">Logout</a>
+          </div>
+        </div>
+        <div class="col-11 col-md-10">
 
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

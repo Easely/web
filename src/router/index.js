@@ -2,9 +2,13 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Home from '../components/app-home.vue';
+import About from '../components/app-about.vue';
+
 import Login from '../components/user/user-login.vue';
 import Register from '../components/user/user-register.vue';
 import Account from '../components/user/user-account.vue';
+import Easel from '../components/user/user-easel.vue';
+import Edit from '../components/user/user-edit.vue';
 
 import Error404 from '../components/error-404.vue';
 
@@ -25,6 +29,11 @@ export default new Router({
       component: Home
     },
     {
+      path: '/about',
+      name: 'About',
+      component: About
+    },
+    {
       path: '/login',
       name: 'Login',
       component: Login
@@ -37,7 +46,21 @@ export default new Router({
     {
       path: '/account',
       name: 'Account',
-      component: Account
+      component: Account,
+      children: [
+        {
+          path: 'easel',
+          name: 'User EASEL',
+          component: Easel,
+          props: true
+        },
+        {
+          path: 'edit',
+          name: 'User Edit',
+          component: Edit,
+          props: true
+        }
+      ]
     },
     {
       path: '/assignment/:id',

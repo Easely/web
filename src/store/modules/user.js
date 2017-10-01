@@ -20,6 +20,8 @@ const actions = {
       let storageJwt = jwt(localStorage.getItem('jwt'));
       context.commit('setEmail', storageJwt.email);
       context.commit('setUuid', storageJwt.uuid);
+      this.dispatch('getAssignments');
+      this.dispatch('getCourses');
     } else {
       context.commit('setEmail', '');
       context.commit('setUuid', '');

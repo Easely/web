@@ -4,7 +4,7 @@
       <div class="container">
         <h1 class="display-3">{{ assignment.name }}</h1>
         <p class="lead">Due on {{ assignment.date.getMonth() + 1 }}/{{ assignment.date.getDate() }}/{{ assignment.date.getFullYear() }} at {{ assignment.date.getHours() }}:{{ assignment.date.getMinutes() }}</p>
-        <p>Not yet graded, worth 10 points</p>
+        <p>Not yet graded, worth 10 points(PLACEHOLDER)</p>
       </div>
     </div>
     <div class="container">
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="row">
-        <p>This assignment has no attachment</p>
+        <p>This assignment has no attachment(PLACEHOLDER)</p>
       </div>
     </div>
   </div>

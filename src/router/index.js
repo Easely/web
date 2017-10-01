@@ -11,6 +11,9 @@ import Error404 from '../components/error-404.vue';
 import AssignmentDetails from '../components/assignments/assignment-details.vue';
 
 import CourseDetails from '../components/courses/course-details.vue';
+import CourseAssignments from '../components/courses/course-assignments.vue';
+import CourseGrades from '../components/courses/course-grades.vue';
+import CourseResources from '../components/courses/course-resources.vue';
 
 Vue.use(Router);
 
@@ -46,7 +49,27 @@ export default new Router({
       path: '/course/:id',
       name: 'Course Details',
       component: CourseDetails,
-      props: true
+      props: true,
+      children: [
+        {
+          path: 'assignments',
+          name: 'Course Assignments',
+          component: CourseAssignments,
+          props: true
+        },
+        {
+          path: 'grades',
+          name: 'Course Grades',
+          component: CourseGrades,
+          props: true
+        },
+        {
+          path: 'resources',
+          name: 'Course Resources',
+          component: CourseResources,
+          props: true
+        }
+      ]
     },
     {
       path: '*',

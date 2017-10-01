@@ -1,23 +1,21 @@
 <template>
-  <div>
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">{{ course.name }}</h1>
-        <p class="lead">{{ course.code }} with {{ course.teacher }}</p>
-      </div>
-    </div>
-    <div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Current Assignments</h2>
       <div class="row">
-        <div class="col">
-          <div class="nav nav-pills justify-content-center">
-            <router-link :to="{ name: 'Course Assignments' }" class="nav-link" activeClass="active">Assignments</router-link>
-            <router-link :to="{ name: 'Course Grades' }" class="nav-link" activeClass="active">Grades</router-link>
-            <router-link :to="{ name: 'Course Resources' }" class="nav-link" activeClass="active">Class Resources</router-link>
-            <a class="nav-link" :href="'https://cs.harding.edu/easel/cgi-bin/class?id=' + course.id" target="_blank">Open on EASEL</a>
+        <template v-for="assignment in courseAssignmentsSortedByDate">
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }"><h4
+                  class="card-title">{{ assignment.name }}</h4></router-link>
+                <h6 class="card-subtitle mb-2 text-muted">{{ assignment.type }}</h6>
+              </div>
+            </div>
           </div>
-        </div>
+        </template>
       </div>
-      <router-view></router-view>
+      <h2>Past Assignments</h2>
     </div>
   </div>
 </template>
@@ -26,7 +24,7 @@
   import Helpers from '../../helpers';
 
   export default {
-    name: 'Course-Details',
+    name: 'Course-Assignments',
     props: {
       id: {
         type: String,
@@ -58,9 +56,8 @@
         return Helpers.sortAssignmentArrayByDate(that.courseAssignments);
       }
     }
-  };
+  }
 </script>
 
 <style lang="scss" scoped>
-
 </style>

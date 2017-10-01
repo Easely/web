@@ -10,7 +10,7 @@
       <form v-on:submit.prevent="onSubmit">
         <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" v-model="username" required>
+          <input type="email" class="form-control" id="email" v-model="email" required>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -27,7 +27,7 @@
     name: 'User-Login',
     data: function () {
       return {
-        username: '',
+        email: '',
         password: '',
         loginError: false
       };

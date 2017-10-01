@@ -28,9 +28,6 @@
               <router-link class="nav-link" :to="{ name: 'Account' }">{{ email }}</router-link>
             </li>
           </template>
-
-
-
         </ul>
       </div>
     </div>

@@ -1,14 +1,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 
-var proxyUrl;
-
-if (process.env.NODE_ENV === 'production') {
-  proxyUrl = 'https://easely-api.shepherdjerred.com'
-} else {
-  proxyUrl = process.env.API_URL || 'http://localhost:8080'
-}
-
 module.exports = {
   build: {
     env: require('./prod.env'),
@@ -37,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: proxyUrl,
+        target: process.env.API_URL || 'http://localhost:8080',
         changeOrigin: true
       }
     },

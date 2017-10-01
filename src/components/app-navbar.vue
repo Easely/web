@@ -20,6 +20,9 @@
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'Register' }">Register</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'Account' }">Account</router-link>
+          </li>
         </ul>
       </div>
     </div>

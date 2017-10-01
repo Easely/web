@@ -9,7 +9,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="nav nav-pills justify-content-center">
+          <div class="nav nav-pills justify-content-center courseNavigation">
             <router-link :to="{ name: 'Course Assignments' }" class="nav-link" activeClass="active">Assignments</router-link>
             <router-link :to="{ name: 'Course Grades' }" class="nav-link" activeClass="active">Grades</router-link>
             <router-link :to="{ name: 'Course Resources' }" class="nav-link" activeClass="active">Class Resources</router-link>
@@ -62,5 +62,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .courseNavigation {
+    margin-bottom: 20px;
+  }
 </style>

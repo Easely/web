@@ -4,13 +4,18 @@
       <div class="container">
         <h1 class="display-3">{{ assignment.name }}</h1>
         <p class="lead">Due on {{ assignment.date.getMonth() + 1 }}/{{ assignment.date.getDate() }}/{{ assignment.date.getFullYear() }} at {{ assignment.date.getHours() }}:{{ assignment.date.getMinutes() }}</p>
-        <p>Not yet graded, worth 10 points(PLACEHOLDER)</p>
+        <template v-if="assignment.graded">
+          <p>Graded, you earned {{ assignment.earnedPoints }} of {{ assignment.possiblePoints }} points ({{ (assignment.earnedPoints / assignment.possiblePoints) * 100 }}%)</p>
+        </template>
+        <templaet v-else>
+          <p>Not yet graded, worth {{ assignment.possiblePoints }} points</p>
+        </templaet>
       </div>
     </div>
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="nav nav-pills justify-content-center">
+          <div class="nav nav-pills justify-content-center assignmentNavigation">
             <a class="nav-link active">Details</a>
             <a class="nav-link"
                :href="'https://cs.harding.edu/easel/cgi-bin/view?id=' + assignment.id + '&action=submit'"
@@ -20,7 +25,13 @@
         </div>
       </div>
       <div class="row">
-        <p>This assignment has no attachment(PLACEHOLDER)</p>
+        <template v-if="assignment.attachment">
+          <iframe :src="assignment.attachment" class="assignmentAttachment"></iframe>
+          <a :href="assignment.attachment" target="_blank">Open in new tab</a>
+        </template>
+        <template v-else>
+          <p>This assignment has no attachment</p>
+        </template>
       </div>
     </div>
   </div>
@@ -47,5 +58,12 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .assignmentNavigation {
+    margin-bottom: 20px;
+  }
+  .assignmentAttachment {
+    width: 100%;
+    height: 50vh;
+    border: none;
+  }
 </style>

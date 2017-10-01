@@ -18,7 +18,7 @@ const actions = {
       let items = {};
       response.body.forEach(function (item) {
         items[item.id] = item;
-        item.date = new Date(item.date.year, item.date.monthValue - 1, item.date.dayOfMonth);
+        item.date = new Date(item.date.year, item.date.monthValue - 1, item.date.dayOfMonth, item.date.hour, item.date.minute);
       });
       context.commit('setAssignments', items);
     }, response => {

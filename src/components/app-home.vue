@@ -17,7 +17,7 @@
                   </div>
                 </div>
               </template>
-              <template v-if="courses">
+              <template v-if="!courses">
                 <div class="col-sm-12">
                   You aren't in any courses
                 </div>

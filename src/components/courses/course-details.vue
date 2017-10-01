@@ -3,6 +3,7 @@
     <div class="jumbotron">
       <div class="container">
         <h1 class="display-3">{{ course.name }}</h1>
+        <p class="lead">{{ course.code }} with Dr.</p>
       </div>
     </div>
     <div class="container">

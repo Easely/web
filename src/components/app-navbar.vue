@@ -9,20 +9,28 @@
 
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'Home' }">Home</router-link>
           </li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'Login' }">Login</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'Register' }">Register</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'Account' }">Account</router-link>
-          </li>
+
+          <template v-if="!isLoggedIn">
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'Login' }">Login</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'Register' }">Register</router-link>
+            </li>
+          </template>
+          <template v-else>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'Account' }">{{ email }}</router-link>
+            </li>
+          </template>
+
+
+
         </ul>
       </div>
     </div>
@@ -31,7 +39,15 @@
 
 <script>
   export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    computed: {
+      email: function () {
+        return this.$store.state.User.email;
+      },
+      isLoggedIn: function () {
+        return this.$store.state.User.email !== '';
+      }
+    },
   }
 </script>
 

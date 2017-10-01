@@ -1,12 +1,12 @@
 import jwt from 'jwt-decode';
 
 const state = {
-  username: '',
+  email: '',
   uuid: ''
 };
 
 const mutations = {
-  setUsername (state, value) {
+  setEmail (state, value) {
     state.email = value;
   },
   setUuid (state, value) {

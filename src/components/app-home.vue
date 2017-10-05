@@ -4,6 +4,7 @@
       <div class="row justify-content-center">
         <template v-if="isLoggedIn">
           <div class="col-sm-8">
+            <h4 class="upcomingTitle">My Courses</h4>
             <div class="row">
               <template v-for="course in courses">
                 <div class="col-sm-6">
@@ -12,7 +13,7 @@
                       <router-link :to="{ name: 'Course Details', params: { 'id': course.id } }" class="card-link">
                         <h4 class="card-title">{{ course.name }}</h4>
                       </router-link>
-                      <h6 class="card-subtitle mb-2 text-muted">{{ course.code.toUpperCase() }}</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">{{ course.code }} with {{ course.teacher }}</h6>
                     </div>
                   </div>
                 </div>
@@ -32,11 +33,10 @@
                              class="list-group-item list-group-item-action flex-column align-items-start">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ assignment.name }}</h5>
-                    <small class="text-muted">Due on {{ assignment.date.getMonth() + 1 }}/{{ assignment.date.getDate()
-                      }}
+                    <small class="text-muted">Due on {{ dueDate(assignment) }} at {{ dueTime(assignment) }}
                     </small>
                   </div>
-                  <p class="mb-1">{{ assignment.type }} in {{ assignment.course.name }}</p>
+                  <p class="mb-1">{{ assignment.type.toLowerCase().charAt(0).toUpperCase() + assignment.type.slice(1).toLowerCase() }} in {{ assignment.course.name }}</p>
                 </router-link>
               </template>
               <template v-if="upcomingAssignments.length == 0">
@@ -62,6 +62,7 @@
 
 <script>
   import Helpers from '../helpers';
+  import DateJs from 'datejs';
 
   export default {
     name: 'Home',
@@ -95,6 +96,14 @@
         });
         let upcomingAssignmentsSortedByDate = Helpers.sortAssignmentArrayByDate(upcomingAssignments);
         return upcomingAssignmentsSortedByDate;
+      }
+    },
+    methods: {
+      dueDate: function (assignment) {
+        return Date.getMonthName(assignment.date.getMonth()) + " " + assignment.date.getDate()
+      },
+      dueTime: function (assignment) {
+        return assignment.date.toString("h:mm tt");
       }
     }
   }

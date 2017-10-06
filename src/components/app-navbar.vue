@@ -1,42 +1,42 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="#">Easely</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <div>
+    <nav class="navbar is-transparent">
+      <div class="navbar-brand">
+        <router-link :to="{ name: 'Home' }" class="navbar-item">Easely</router-link>
+        <div class="navbar-burger burger" data-target="navbar" @click="isNavbarOpen = !isNavbarOpen" :class="{ 'is-active':isNavbarOpen }">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
 
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'Home' }">Home</router-link>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
+      <div id="navbar" class="navbar-menu" :class="{ 'is-active':isNavbarOpen }">
+        <div class="navbar-start">
+          <router-link class="navbar-item" :to="{ name: 'Home' }">Home</router-link>
+        </div>
 
+        <div class="navbar-end">
           <template v-if="!isLoggedIn">
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'Login' }">Login</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'Register' }">Register</router-link>
-            </li>
+            <router-link class="navbar-item" :to="{ name: 'Login' }">Login</router-link>
+            <router-link class="navbar-item" :to="{ name: 'Register' }">Register</router-link>
           </template>
           <template v-else>
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'Account' }">{{ email }}</router-link>
-            </li>
+            <router-link class="navbar-item" :to="{ name: 'Account' }">{{ email }}</router-link>
           </template>
-        </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </template>
 
 <script>
   export default {
     name: 'Navbar',
+    data: function () {
+      return {
+        isNavbarOpen: false
+      }
+    },
     computed: {
       email: function () {
         return this.$store.state.User.email;

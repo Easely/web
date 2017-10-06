@@ -1,71 +1,77 @@
 <template>
   <div>
     <div class="container">
-      <div class="row justify-content-center registerMenu">
-        <div class="col-11 col-md-6">
-          <div class="alert alert-primary" role="alert">
-            Please <router-link :to="{ name: 'About'}" class="alert-link">read about Easely</router-link> before registering
+      <div class="columns">
+        <div class="column is-one-third is-offset-one-third">
+          <div class="notification is-primary">
+            Please
+            <router-link :to="{ name: 'About'}" class="alert-link">read about Easely</router-link>
+            before registering
           </div>
-          <div class="card registerCard">
-            <div class="card-body">
-              <h4 class="card-title">Register on Easely</h4>
-              <template v-if="registerError">
-                <div class="alert alert-danger" role="alert">
-                  There was an error during registration
-                </div>
-              </template>
-              <form v-on:submit.prevent="onSubmit">
-                <div class="form-group">
-                  <!-- TODO validate email address -->
-                  <label for="email">Email address</label>
-                  <input type="email" class="form-control" id="email" v-model="email" required
-                         v-bind:class="{ 'is-invalid':isEmailInvalid }">
-                  <template v-if="!isEmailInvalid">
-                    <small class="form-text text-muted">You must register with your Harding email address</small>
-                  </template>
-                  <div class="invalid-feedback">
-                    You must register with your Harding email address
-                  </div>
-                </div>
+          <div class="box loginMenu">
+            <h3 class="title is-3">Register on Easely</h3>
+            <template v-if="registerError">
+              <div class="notification is-danger">
+                An error occurred while registering
+              </div>
+            </template>
 
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input id="password" type="password" class="form-control" v-model="password" required
-                         v-bind:class="{ 'is-invalid':isPasswordInvalid }">
-                  <div class="invalid-feedback">
-                    Your password must be at least 8 characters long
-                  </div>
+            <form v-on:submit.prevent="onSubmit">
+
+              <div class="field">
+                <label class="label" for="email">Email address</label>
+                <div class="control">
+                  <input class="input" type="email" id="email" v-model="email" required>
                 </div>
-                <div class="form-group">
-                  <label for="confirmPassword">Confirm password</label>
-                  <input id="confirmPassword" type="password" class="form-control" v-model="confirmPassword" required
-                         v-bind:class="{ 'is-invalid':isConfirmPasswordInvalid }">
-                  <div class="invalid-feedback">
-                    Your passwords don't match
-                  </div>
+                <template v-if="isEmailInvalid">
+                  <p>You must register with your Harding email address</p>
+                </template>
+              </div>
+
+              <div class="field">
+                <label class="label" for="password">Password</label>
+                <div class="control">
+                  <input class="input" type="password" id="password" v-model="password" required>
                 </div>
+                <template v-if="isPasswordInvalid">
+                  <p>Your password must be a least 8 characters long</p>
+                </template>
+              </div>
 
-                <br>
-
-                <div class="form-group">
-                  <label for="easelUsername">EASEL Username</label>
-                  <input id="easelUsername" type="text" class="form-control" v-model="easelUsername" required>
-
-                  <label for="easelPassword">EASEL Password</label>
-                  <input type="password" class="form-control" v-model="easelPassword" required>
-                  <small id="easelPassword" class="form-text text-muted">
-                    We need your EASEL credentials to load your classes, assignments, and grades from the EASEL website. They are stored in plain text.
-                  </small>
+              <div class="field">
+                <label class="label" for="confirmPassword">Confirm Password</label>
+                <div class="control">
+                  <input class="input" type="password" id="confirmPassword" v-model="confirmPassword" required>
                 </div>
+                <template v-if="isConfirmPasswordInvalid">
+                  <p>Your passwords don't match</p>
+                </template>
+              </div>
 
-                <button type="submit" class="btn btn-primary">Register</button>
-              </form>
-            </div>
-            <ul class="list-group list-group-flush">
-              <router-link :to="{ name: 'Login' }" class="list-group-item list-group-item-action">
-                Already have an account? Login now
-              </router-link>
-            </ul>
+              <hr>
+              <div class="field">
+                <label class="label" for="easelUsername">EASEL Username</label>
+                <div class="control">
+                  <input class="input" type="text" id="easelUsername" v-model="easelUsername" required>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label" for="easelPassword">EASEL Password</label>
+                <div class="control">
+                  <input class="input" type="password" id="easelPassword" v-model="easelPassword" required>
+                </div>
+              </div>
+
+              <p>
+                We need your EASEL credentials to load your classes, assignments, and grades from the EASEL website. They are stored in plain text.
+              </p>
+
+              <button type="submit" class="button is-primary">Register</button>
+            </form>
+            <router-link :to="{ name: 'Login' }">
+              Already have an account? Login now
+            </router-link>
           </div>
         </div>
       </div>

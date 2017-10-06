@@ -1,68 +1,111 @@
 <template>
   <div>
-    <div class="container">
-      <div class="row justify-content-center">
-        <template v-if="isLoggedIn">
-          <div class="col-sm-8">
-            <h4 class="upcomingTitle">My Courses</h4>
-            <div class="row">
-              <template v-for="course in courses">
-                <div class="col-sm-6">
-                  <div class="card courseCard">
-                    <div class="card-body">
-                      <router-link :to="{ name: 'Course Details', params: { 'id': course.id } }" class="card-link">
-                        <h4 class="card-title">{{ course.name }}</h4>
-                      </router-link>
-                      <h6 class="card-subtitle mb-2 text-muted">{{ course.code }} with {{ course.teacher }}</h6>
+    <template v-if="isLoggedIn">
+      <div class="container">
+        <div class="column is-10-mobile is-offset-1-mobile">
+          <div class="columns">
+            <div class="column is-two-thirds">
+              <h3 class="title is-3">My Courses</h3>
+
+              <div class="columns is-multiline">
+                <template v-if="courses">
+                  <template v-for="course in courses">
+                    <div class="column is-half">
+                      <div class="card">
+                        <div class="card-content">
+                          <div class="content">
+                            <router-link :to="{ name: 'Course Details', params: { 'id': course.id } }"
+                                         class="card-link">
+                              <h4 class="is-size-4">{{ course.name }}</h4>
+                            </router-link>
+                            <p>
+                              {{ course.code }} with {{ course.teacher }}
+                            </p>
+                          </div>
+                        </div>
+                        <footer class="card-footer">
+                          <router-link :to="{ name: 'Course Assignments', params: { 'id': course.id } }"
+                                       class="card-footer-item"><i class="fa fa-file fa-fw" title="Assignments"></i>
+                          </router-link>
+                          <router-link :to="{ name: 'Course Grades', params: { 'id': course.id } }"
+                                       class="card-footer-item"><i class="fa fa-check fa-fw" title="Grades"></i>
+                          </router-link>
+                        </footer>
+                      </div>
+                    </div>
+                  </template>
+                </template>
+                <template v-else>
+                  <div class="column is-half">
+                    <div class="box has-text-centered">
+                      <h3>You aren't in any courses</h3>
                     </div>
                   </div>
-                </div>
-              </template>
-              <template v-if="!courses">
-                <div class="col-sm-12">
-                  You aren't in any courses
-                </div>
-              </template>
+                </template>
+              </div>
             </div>
-          </div>
-          <div class="col">
-            <h4 class="upcomingTitle">Upcoming Assignments</h4>
-            <ul class="list-group upcomingList">
+
+            <div class="column is-one-third">
+              <h3 class="title is-3">Assignments</h3>
+              <h6 class="subtitle is-6">You have {{ upcomingAssignments.length
+                }} {{ upcomingAssignments.length > 1 || upcomingAssignments.length == 0 ? 'assignments' : 'assignment'
+                }} due this week</h6>
               <template v-for="assignment in upcomingAssignments">
-                <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }"
-                             class="list-group-item list-group-item-action flex-column align-items-start">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ assignment.name }}</h5>
-                    <small class="text-muted">Due on {{ dueDate(assignment) }} at {{ dueTime(assignment) }}
-                    </small>
+
+                <div class="box assignmentCard">
+                  <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }">
+                    <h5 class="is-5 title">{{ assignment.name }}</h5>
+                  </router-link>
+                  <h6 class="is-6 subtitle assignmentCard--subtitle">{{ dueDate(assignment) }} at {{ dueTime(assignment)
+                    }}</h6>
+                  <div class="tags">
+                    <span class="tag is-light assignmentCard--tag">
+                      <router-link :to="{ name: 'Course Details', params: { 'id': assignment.course.id } }">
+                        {{ assignment.course.name }}
+                      </router-link>
+                    </span>
+                    <span class="tag is-light">{{ assignment.type }}</span>
                   </div>
-                  <p class="mb-1">{{ assignment.type.toLowerCase().charAt(0).toUpperCase() + assignment.type.slice(1).toLowerCase() }} in {{ assignment.course.name }}</p>
-                </router-link>
+                </div>
+
               </template>
               <template v-if="upcomingAssignments.length == 0">
                 You have no upcoming assignments
               </template>
-            </ul>
-          </div>
-        </template>
-        <template v-else>
-          <div class="card loginRegisterPrompt">
-            <div class="card-body">
-              <h4 class="card-title">Please login or register</h4>
-              <p class="card-text">To use Easely, you first need to login or register</p>
-              <router-link :to="{ name: 'Login' }" class="card-link">Login</router-link>
-              <router-link :to="{ name: 'Register' }" class="card-link">Register</router-link>
             </div>
           </div>
-        </template>
+        </div>
       </div>
-    </div>
+
+    </template>
+
+
+    <template v-else>
+      <section class="hero is-primary is-medium">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+              Welcome to Easely
+            </h1>
+            <h2 class="subtitle">
+              A better interface for EASEL
+            </h2>
+            <h2 class="subtitle">
+              Please
+              <router-link :to="{ name: 'Login' }" class="card-link">Login</router-link>
+              or
+              <router-link :to="{ name: 'Register' }" class="card-link">Register</router-link>
+              to continue
+            </h2>
+          </div>
+        </div>
+      </section>
+    </template>
   </div>
 </template>
 
 <script>
   import Helpers from '../helpers';
-  import DateJs from 'datejs';
 
   export default {
     name: 'Home',
@@ -110,19 +153,16 @@
 </script>
 
 <style lang="scss" scoped>
-  .courseCard {
-    margin-top: 10px;
+  .assignmentCard {
+    padding: 1rem;
+    margin-bottom: .75rem;
   }
 
-  .upcomingTitle {
-    margin-top: 10px;
+  .assignmentCard--subtitle {
+    margin-bottom: .5rem;
   }
 
-  .upcomingList {
-    margin-top: 10px;
-  }
-
-  .loginRegisterPrompt {
-    margin-top: 30px;
+  .assignmentCard--tag a {
+    color: #000;
   }
 </style>

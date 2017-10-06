@@ -1,21 +1,63 @@
 <template>
-  <div class="row">
-    <div class="col">
-      <h2>Current Assignments</h2>
-      <div class="row">
-        <template v-for="assignment in courseAssignmentsSortedByDate">
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-body">
-                <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }"><h4
-                  class="card-title">{{ assignment.name }}</h4></router-link>
-                <h6 class="card-subtitle mb-2 text-muted">{{ assignment.type }}</h6>
+  <div>
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+
+        <h2 class="is-2 title">Upcoming Assignments</h2>
+        <div class="columns is-multiline">
+          <template v-for="assignment in currentCourseAssignments">
+            <div class="column is-half">
+              <div class="box">
+                <div class="card-body">
+                  <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }">
+                    <h5 class="title is-5">{{ assignment.name }}</h5>
+                  </router-link>
+                  <h6 class="subtitle is-6">
+                    Due {{ dueDate(assignment) }} at {{ dueTime(assignment) }}
+                  </h6>
+                  <template v-if="assignment.possiblePoints">
+                    <p>
+                      {{ assignment.possiblePoints }} Points
+                    </p>
+                  </template>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ assignment.type }}</h6>
+                </div>
               </div>
             </div>
-          </div>
-        </template>
+          </template>
+        </div>
+
+        <h2 class="is-2 title">Past Assignments</h2>
+        <div class="columns is-multiline">
+          <template v-for="assignment in pastCourseAssignments">
+            <div class="column is-half">
+              <div class="box">
+                <div class="card-body">
+                  <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }">
+                    <h5 class="title is-5">{{ assignment.name }}</h5>
+                  </router-link>
+                  <h6 class="subtitle is-6">
+                    Due {{ dueDate(assignment) }} at {{ dueTime(assignment) }}
+                  </h6>
+                  <template v-if="assignment.possiblePoints">
+                    <template v-if="assignment.graded">
+                      <p>
+                        {{ assignment.earnedPoints }}/{{ assignment.possiblePoints }} Points
+                      </p>
+                    </template>
+                    <template v-else>
+                      <p>
+                        {{ assignment.possiblePoints }} Points
+                      </p>
+                    </template>
+                  </template>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ assignment.type }}</h6>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
       </div>
-      <h2>Past Assignments</h2>
     </div>
   </div>
 </template>
@@ -49,11 +91,35 @@
             courseAssignments.push(assignment);
           }
         });
-        return courseAssignments;
+        return Helpers.sortAssignmentArrayByDate(courseAssignments);
       },
-      courseAssignmentsSortedByDate: function () {
-        let that = this;
-        return Helpers.sortAssignmentArrayByDate(that.courseAssignments);
+      currentCourseAssignments: function () {
+        let today = Date.today();
+        let assignments = [];
+        this.courseAssignments.forEach(function (assignment) {
+          if (Date.compare(today, new Date(assignment.date)) < 0) {
+            assignments.push(assignment);
+          }
+        });
+        return assignments;
+      },
+      pastCourseAssignments: function () {
+        let today = Date.today();
+        let assignments = [];
+        this.courseAssignments.forEach(function (assignment) {
+          if (Date.compare(today, new Date(assignment.date)) > 0) {
+            assignments.push(assignment);
+          }
+        });
+        return assignments;
+      }
+    },
+    methods: {
+      dueDate: function (assignment) {
+        return Date.getMonthName(assignment.date.getMonth()) + " " + assignment.date.getDate()
+      },
+      dueTime: function (assignment) {
+        return assignment.date.toString("h:mm tt");
       }
     }
   }

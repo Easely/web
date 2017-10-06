@@ -1,21 +1,52 @@
 <template>
   <div>
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">{{ email }}</h1>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-11 col-md-2">
-          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
-            <router-link :to="{ name: 'User Edit' }" class="nav-link" activeClass="active">Account</router-link>
-            <router-link :to="{ name: 'User EASEL' }" class="nav-link" activeClass="active">EASEL Credentials</router-link>
-            <a class="nav-link" href="" v-on:click="onClick()">Logout</a>
-          </div>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            {{ email }}
+          </h1>
         </div>
-        <div class="col-11 col-md-10">
-
+      </div>
+    </section>
+    <div class="container">
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <aside class="menu aboutMenu">
+            <p class="menu-label">
+              Account
+            </p>
+            <ul class="menu-list">
+              <li>
+                <router-link :to="{ name: 'User Edit' }" activeClass="is-active">
+                  Change Password
+                </router-link>
+              </li>
+              <li>
+                <a href="" v-on:click="onClick()">
+                  Logout
+                </a>
+              </li>
+            </ul>
+            <p class="menu-label">
+              EASEL
+            </p>
+            <ul class="menu-list">
+              <li>
+                <router-link :to="{ name: 'User EASEL' }" activeClass="is-active">
+                  Update credentials
+                </router-link>
+              </li>
+              <li>
+                <a href="https://cs.harding.edu/easel/cgi-bin/password" target="_blank">
+                  <i class="fa fa-fw fa-external-link"></i> Change EASEL password
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+        <div class="column is-three-quarters">
+          <router-view></router-view>
         </div>
       </div>
     </div>
@@ -41,4 +72,7 @@
 </script>
 
 <style lang="scss" scoped>
+  .aboutMenu {
+    margin-top: 20px;
+  }
 </style>

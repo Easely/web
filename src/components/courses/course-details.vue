@@ -1,23 +1,50 @@
 <template>
   <div>
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">{{ course.name }}</h1>
-        <p class="lead">{{ course.code }} with {{ course.teacher }}</p>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="nav nav-pills justify-content-center courseNavigation">
-            <router-link :to="{ name: 'Course Assignments' }" class="nav-link" activeClass="active">Assignments</router-link>
-            <router-link :to="{ name: 'Course Grades' }" class="nav-link" activeClass="active">Grades</router-link>
-            <router-link :to="{ name: 'Course Resources' }" class="nav-link" activeClass="active">Class Resources</router-link>
-            <a class="nav-link" :href="'https://cs.harding.edu/easel/cgi-bin/class?id=' + course.id" target="_blank">Open on EASEL</a>
-          </div>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            {{ course.name }}
+          </h1>
+          <h2 class="subtitle">
+            {{ course.code }} with {{ course.teacher }}
+          </h2>
         </div>
       </div>
-      <router-view></router-view>
+    </section>
+    <div class="column is-10-mobile is-offset-1-mobile">
+      <div class="container">
+        <div class="columns">
+          <div class="column courseNavigation">
+            <div class="tabs is-centered is-boxed">
+              <ul>
+                <router-link :to="{ name: 'Course Assignments' }" class="nav-link" activeClass="is-active" tag="li">
+                  <a>
+                    <i class="fa fa-fw fa-file"></i> Assignments
+                  </a>
+                </router-link>
+                <router-link :to="{ name: 'Course Grades' }" class="nav-link" activeClass="is-active" tag="li">
+                  <a>
+                    <i class="fa fa-fw fa-check"></i> Grades
+                  </a>
+                </router-link>
+                <router-link :to="{ name: 'Course Resources' }" class="nav-link" activeClass="is-active" tag="li">
+                  <a>
+                    <i class="fa fa-fw fa-link"></i> Class Resources
+                  </a>
+                </router-link>
+                <li>
+                  <a class="nav-link" :href="'https://cs.harding.edu/easel/cgi-bin/class?id=' + course.id"
+                     target="_blank">
+                    <i class="fa fa-fw fa-external-link"></i> Open on EASEL
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -39,23 +66,6 @@
       },
       courses: function () {
         return this.$store.state.Courses.courses;
-      },
-      assignments: function () {
-        return this.$store.state.Assignments.assignments;
-      },
-      courseAssignments: function () {
-        let that = this;
-        let courseAssignments = [];
-        Helpers.objectToArray(this.assignments).forEach(function (assignment) {
-          if (assignment.course.id === that.course.id) {
-            courseAssignments.push(assignment);
-          }
-        });
-        return courseAssignments;
-      },
-      courseAssignmentsSortedByDate: function () {
-        let that = this;
-        return Helpers.sortAssignmentArrayByDate(that.courseAssignments);
       }
     }
   };
@@ -63,6 +73,6 @@
 
 <style lang="scss" scoped>
   .courseNavigation {
-    margin-bottom: 20px;
+    margin-top: 20px;
   }
 </style>

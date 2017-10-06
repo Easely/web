@@ -1,9 +1,7 @@
 <template>
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">404</h1>
-      <p class="lead">Page not found</p>
-    </div>
+  <div>
+      <h1>404</h1>
+      <p>Page not found</p>
   </div>
 </template>
 

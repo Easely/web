@@ -8,7 +8,10 @@ import store from './store';
 import Raven from 'raven-js';
 import RavenVue from 'raven-js/plugins/vue';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'datejs';
+
+import 'bulma/css/bulma.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 if (process.env.NODE_ENV === 'production') {
   Raven.config('https://6472606f44934cf89ddfd0ce0fd24f38@sentry.io/224474')

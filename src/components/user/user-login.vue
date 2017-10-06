@@ -1,31 +1,40 @@
 <template>
   <div>
     <div class="container">
-      <div class="row justify-content-center loginMenu">
-        <div class="col-11 col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Login to Easely</h4>
-              <form v-on:submit.prevent="onSubmit">
-                <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input type="email" class="form-control" id="email" v-bind:class="{ 'is-invalid':loginError }" v-model="email" required>
+      <div class="columns">
+        <div class="column is-one-third is-offset-one-third">
+          <div class="box loginMenu">
+            <h3 class="title is-3">Login to Easely</h3>
+
+            <template v-if="loginError">
+              <div class="notification is-danger">
+                Invalid username or password
+              </div>
+            </template>
+            <form v-on:submit.prevent="onSubmit">
+              <div class="field">
+                <label class="label" for="email">Email address</label>
+                <div class="control">
+                  <input class="input" type="email" id="email" v-model="email" required>
                 </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" v-bind:class="{ 'is-invalid':loginError }" v-model="password" required>
-                  <div class="invalid-feedback">
-                    Invalid email or password
-                  </div>
+              </div>
+
+              <div class="field">
+                <label class="label" for="password">Password</label>
+                <div class="control">
+                  <input class="input" type="password" id="password" v-model="password" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <button type="button" class="btn btn-link">Forgot password?</button>
-              </form>
-            </div>
-            <ul class="list-group list-group-flush">
-              <router-link :to="{ name: 'Register' }" class="list-group-item list-group-item-action">Don't have an account? Register now</router-link>
-            </ul>
+              </div>
+
+              <button type="submit" class="button is-primary">Login</button>
+              <button type="button" class="button is-light">Forgot password?</button>
+            </form>
+
+            <router-link :to="{ name: 'Register' }">
+              Don't have an account? Register now
+            </router-link>
           </div>
+
         </div>
       </div>
     </div>

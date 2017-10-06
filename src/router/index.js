@@ -75,6 +75,12 @@ export default new Router({
       props: true,
       children: [
         {
+          path: '/',
+          redirect: {
+            name: 'Course Assignments'
+          }
+        },
+        {
           path: 'assignments',
           name: 'Course Assignments',
           component: CourseAssignments,

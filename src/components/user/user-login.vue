@@ -53,7 +53,7 @@
     },
     methods: {
       onSubmit: function () {
-        this.$http.post('/api/user/login', {
+        this.$http.post(process.env.API_URL + '/api/user/login', {
           'email': this.email,
           'password': this.password
         }).then(response => {

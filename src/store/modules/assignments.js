@@ -14,7 +14,7 @@ const mutations = {
 
 const actions = {
   getAssignments (context) {
-    Vue.http.get('/api/assignments').then(response => {
+    Vue.http.get(process.env.API_URL + '/api/assignments').then(response => {
       let items = {};
       response.body.forEach(function (item) {
         items[item.id] = item;

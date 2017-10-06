@@ -109,7 +109,7 @@
         if (this.password !== this.confirmPassword) {
           return;
         }
-        this.$http.post('/api/user/register', {
+        this.$http.post(process.env.API_URL + '/api/user/register', {
           'email': this.email,
           'password': this.password,
           'easelUsername': this.easelUsername,

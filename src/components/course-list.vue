@@ -18,10 +18,10 @@
               </div>
               <footer class="card-footer">
                 <router-link :to="{ name: 'Course Assignments', params: { 'id': course.id } }"
-                             class="card-footer-item"><i class="fa fa-file fa-fw" title="Assignments"></i>
+                             class="card-footer-item">Assignments
                 </router-link>
                 <router-link :to="{ name: 'Course Grades', params: { 'id': course.id } }"
-                             class="card-footer-item"><i class="fa fa-check fa-fw" title="Grades"></i>
+                             class="card-footer-item">Grades
                 </router-link>
               </footer>
             </div>

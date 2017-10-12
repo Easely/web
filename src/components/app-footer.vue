@@ -4,12 +4,8 @@
       <div class="container">
         <div class="content has-text-centered">
           <p>
-            Easely by <a href="https://shepherdjerred.com">Jerred Shepherd</a>
-          </p>
-          <p>
-            <a class="icon" href="https://github.com/Easely">
-              <i class="fa fa-github"></i>
-            </a>
+            Easely by <a href="https://shepherdjerred.com">Jerred Shepherd</a><br>
+            Source available on <a href="https://github.com/Easely">GitHub</a>
           </p>
         </div>
       </div>
@@ -26,5 +22,6 @@
 <style lang="scss" scoped>
   .appFooter {
     margin-top: 30px;
+    padding: 1.5rem;
   }
 </style>

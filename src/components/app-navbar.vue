@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar is-transparent">
+    <nav class="navbar is-light">
       <div class="navbar-brand">
         <router-link :to="{ name: 'Home' }" class="navbar-item">Easely</router-link>
         <div class="navbar-burger burger" data-target="navbar" @click="isNavbarOpen = !isNavbarOpen" :class="{ 'is-active':isNavbarOpen }">

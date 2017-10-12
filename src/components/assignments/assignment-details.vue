@@ -37,7 +37,7 @@
                 </li>
                 <li class="nav-link">
                   <router-link :to="{ name: 'Course Details', params: { 'id': assignment.course.id } }">
-                    <i class="fa fa-fw fa-book"></i> Course
+                    <i class="fa fa-fw fa-book"></i> Back to {{ assignment.course.name }}
                   </router-link>
                 </li>
                 <template v-if="assignment.type !== 'NOTES'">
@@ -108,8 +108,8 @@
 
 <style lang="scss" scoped>
   .assignmentNavigation {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 0;
   }
 
   .attachmentFrame {

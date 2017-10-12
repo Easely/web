@@ -20,6 +20,9 @@
                       {{ assignment.possiblePoints }} Points
                     </p>
                   </template>
+                  <template v-else>
+                    <br>
+                  </template>
                   <h6 class="card-subtitle mb-2 text-muted">{{ assignment.type }}</h6>
                 </div>
               </div>
@@ -50,6 +53,9 @@
                         {{ assignment.possiblePoints }} Points
                       </p>
                     </template>
+                  </template>
+                  <template v-else>
+                    <br>
                   </template>
                   <h6 class="card-subtitle mb-2 text-muted">{{ assignment.type }}</h6>
                 </div>

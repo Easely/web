@@ -9,8 +9,8 @@
             <thead>
             <tr>
               <td>Name</td>
-              <td>Possible</td>
               <td>Earned</td>
+              <td>Possible</td>
               <td>Percent</td>
             </tr>
             </thead>
@@ -18,9 +18,9 @@
             <template v-for="assignment in homework">
               <tr>
                 <td>{{ assignment.name }}</td>
-                <td>{{ assignment.possiblePoints }}</td>
                 <td>{{ assignment.earnedPoints }}</td>
-                <td>{{ (assignment.earnedPoints / assignment.possiblePoints) * 100 }}%</td>
+                <td>{{ assignment.possiblePoints }}</td>
+                <td><b>{{ Math.round((assignment.earnedPoints / assignment.possiblePoints) * 100) }}%</b></td>
               </tr>
             </template>
             </tbody>
@@ -49,7 +49,7 @@
                 <td>{{ assignment.name }}</td>
                 <td>{{ assignment.possiblePoints }}</td>
                 <td>{{ assignment.earnedPoints }}</td>
-                <td>{{ (assignment.earnedPoints / assignment.possiblePoints) * 100 }}%</td>
+                <td><b>{{ Math.round((assignment.earnedPoints / assignment.possiblePoints) * 100) }}%</b></td>
               </tr>
             </template>
             </tbody>
@@ -78,7 +78,7 @@
                 <td>{{ assignment.name }}</td>
                 <td>{{ assignment.possiblePoints }}</td>
                 <td>{{ assignment.earnedPoints }}</td>
-                <td>{{ (assignment.earnedPoints / assignment.possiblePoints) * 100 }}%</td>
+                <td><b>{{ Math.round((assignment.earnedPoints / assignment.possiblePoints) * 100) }}%</b></td>
               </tr>
             </template>
             </tbody>
@@ -89,7 +89,7 @@
         </template>
       </div>
       <div class="column is-full is-centered">
-        <h3 class="title is-3">Overall grade: {{ course.courseGrade.classAverage }}%</h3>
+        <h4 class="title is-4">Overall grade: {{ course.courseGrade.classAverage }}%</h4>
       </div>
     </div>
   </div>

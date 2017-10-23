@@ -9,7 +9,7 @@
                 <div class="content">
                   <router-link :to="{ name: 'Course Details', params: { 'id': course.id } }"
                                class="card-link">
-                    <h4 class="is-size-4">{{ course.name }}</h4>
+                    <h4 class="is-size-4 is-bold">{{ course.name }}</h4>
                   </router-link>
                   <p>
                     {{ course.code }} with {{ course.teacher }}

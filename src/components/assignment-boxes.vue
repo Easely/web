@@ -1,25 +1,24 @@
 <template>
-  <div>
-    <template v-for="assignment in upcomingAssignments">
+    <div>
+        <template v-for="assignment in upcomingAssignments">
 
-      <div class="box assignmentCard">
-        <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }">
-          <h5 class="is-5 title">{{ assignment.name }}</h5>
-        </router-link>
-        <h6 class="is-6 subtitle assignmentCard--subtitle">{{ dueDate(assignment) }} at {{ dueTime(assignment)
-          }}</h6>
-        <div class="tags">
+            <div class="box assignmentCard">
+                <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }">
+                    <h5 class="is-5 title">{{ assignment.name }}</h5>
+                </router-link>
+                <h6 class="is-6 subtitle assignmentCard--subtitle">{{ dueDate(assignment) }} at {{ dueTime(assignment) }}</h6>
+                <div class="tags">
                     <span class="tag is-light assignmentCard--tag">
                       <router-link :to="{ name: 'Course Details', params: { 'id': assignment.course.id } }">
                         {{ assignment.course.name }}
                       </router-link>
                     </span>
-          <span class="tag is-light">{{ assignment.type }}</span>
-        </div>
-      </div>
+                    <span class="tag is-light">{{ assignment.type }}</span>
+                </div>
+            </div>
 
-    </template>
-  </div>
+        </template>
+    </div>
 </template>
 
 <script>

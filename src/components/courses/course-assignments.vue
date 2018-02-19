@@ -1,71 +1,77 @@
 <template>
-  <div>
-    <div class="columns">
-      <div class="column is-half is-offset-one-quarter">
+    <div>
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
 
-        <h2 class="is-2 title">Upcoming Assignments</h2>
-        <div class="columns is-multiline">
-          <template v-for="assignment in currentCourseAssignments">
-            <div class="column is-half">
-              <div class="box">
-                <div class="card-body">
-                  <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }">
-                    <h5 class="title is-5">{{ assignment.name }}</h5>
-                  </router-link>
-                  <h6 class="subtitle is-6">
-                    Due {{ dueDate(assignment) }} at {{ dueTime(assignment) }}
-                  </h6>
-                  <template v-if="assignment.possiblePoints">
-                    <p>
-                      {{ assignment.possiblePoints }} Points
-                    </p>
-                  </template>
-                  <template v-else>
-                    <br>
-                  </template>
-                  <h6 class="card-subtitle mb-2 text-muted">{{ assignment.type }}</h6>
-                </div>
-              </div>
-            </div>
-          </template>
-        </div>
-
-        <h2 class="is-2 title">Past Assignments</h2>
-        <div class="columns is-multiline">
-          <template v-for="assignment in pastCourseAssignments">
-            <div class="column is-half">
-              <div class="box">
-                <div class="card-body">
-                  <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }">
-                    <h5 class="title is-5">{{ assignment.name }}</h5>
-                  </router-link>
-                  <h6 class="subtitle is-6">
-                    Due {{ dueDate(assignment) }} at {{ dueTime(assignment) }}
-                  </h6>
-                  <template v-if="assignment.possiblePoints">
-                    <template v-if="assignment.graded">
-                      <p>
-                        {{ assignment.earnedPoints }}/{{ assignment.possiblePoints }} Points
-                      </p>
+                <h2 class="is-2 title">Upcoming Assignments</h2>
+                <div class="columns is-multiline">
+                    <template v-if="currentCourseAssignments">
+                        <p>No upcoming assignments</p>
                     </template>
                     <template v-else>
-                      <p>
-                        {{ assignment.possiblePoints }} Points
-                      </p>
+                        <template v-for="assignment in currentCourseAssignments">
+                            <div class="column is-half">
+                                <div class="box">
+                                    <div class="card-body">
+                                        <router-link
+                                                :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }">
+                                            <h5 class="title is-5">{{ assignment.name }}</h5>
+                                        </router-link>
+                                        <h6 class="subtitle is-6">
+                                            Due {{ dueDate(assignment) }} at {{ dueTime(assignment) }}
+                                        </h6>
+                                        <template v-if="assignment.possiblePoints">
+                                            <p>
+                                                {{ assignment.possiblePoints }} Points
+                                            </p>
+                                        </template>
+                                        <template v-else>
+                                            <br>
+                                        </template>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ assignment.type }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
                     </template>
-                  </template>
-                  <template v-else>
-                    <br>
-                  </template>
-                  <h6 class="card-subtitle mb-2 text-muted">{{ assignment.type }}</h6>
                 </div>
-              </div>
+
+                <h2 class="is-2 title">Past Assignments</h2>
+                <div class="columns is-multiline">
+                    <template v-for="assignment in pastCourseAssignments">
+                        <div class="column is-half">
+                            <div class="box">
+                                <div class="card-body">
+                                    <router-link :to="{ name: 'Assignment Details', params: { 'id': assignment.id } }">
+                                        <h5 class="title is-5">{{ assignment.name }}</h5>
+                                    </router-link>
+                                    <h6 class="subtitle is-6">
+                                        Due {{ dueDate(assignment) }} at {{ dueTime(assignment) }}
+                                    </h6>
+                                    <template v-if="assignment.possiblePoints">
+                                        <template v-if="assignment.graded">
+                                            <p>
+                                                {{ assignment.earnedPoints }}/{{ assignment.possiblePoints }} Points
+                                            </p>
+                                        </template>
+                                        <template v-else>
+                                            <p>
+                                                {{ assignment.possiblePoints }} Points
+                                            </p>
+                                        </template>
+                                    </template>
+                                    <template v-else>
+                                        <br>
+                                    </template>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ assignment.type }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
             </div>
-          </template>
         </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -122,13 +128,13 @@
     },
     methods: {
       dueDate: function (assignment) {
-        return Date.getMonthName(assignment.date.getMonth()) + " " + assignment.date.getDate()
+        return Date.getMonthName(assignment.date.getMonth()) + ' ' + assignment.date.getDate();
       },
       dueTime: function (assignment) {
-        return assignment.date.toString("h:mm tt");
+        return assignment.date.toString('h:mm tt');
       }
     }
-  }
+  };
 </script>
 
 <style lang="scss" scoped>

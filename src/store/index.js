@@ -10,6 +10,7 @@ Vue.use(Vuex);
 Vue.use(VueResource);
 
 Vue.http.interceptors.push(function (request, next) {
+  console.log('Setting auth header: ' + localStorage.getItem('jwt'));
   request.headers.set('Authorization', 'Bearer ' + localStorage.getItem('jwt'));
   next();
 });

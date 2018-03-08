@@ -80,7 +80,7 @@ module.exports = {
   plugins: [
     new FaviconsWebpackPlugin({
       logo: './src/assets/favicon.png',
-      prefix: 'icons',
+      prefix: 'icons/',
       persistentCache: true,
       inject: true,
       background: '#446CB3',

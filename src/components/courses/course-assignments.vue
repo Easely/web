@@ -6,9 +6,6 @@
                 <h2 class="is-2 title">Upcoming Assignments</h2>
                 <div class="columns is-multiline">
                     <template v-if="currentCourseAssignments">
-                        <p>No upcoming assignments</p>
-                    </template>
-                    <template v-else>
                         <template v-for="assignment in currentCourseAssignments">
                             <div class="column is-half">
                                 <div class="box">
@@ -33,6 +30,9 @@
                                 </div>
                             </div>
                         </template>
+                    </template>
+                    <template v-else>
+                        <p>No upcoming assignments</p>
                     </template>
                 </div>
 

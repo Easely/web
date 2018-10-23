@@ -3,7 +3,7 @@
     <div class="columns is-multiline">
       <div class="column">
         <h3 class="is-3 title">Homework</h3>
-        <h6 class="is-6 subtitle">{{ course.courseGrade.homeworkWeight }}% of grade</h6>
+        <h6 class="is-6 subtitle">{{ course.userCourseGrade.homeworkWeight }}% of grade</h6>
         <template v-if="homework.length > 0">
           <table class="table">
             <thead>
@@ -32,7 +32,7 @@
       </div>
       <div class="column">
         <h1 class="is-3 title">Projects</h1>
-        <h6 class="is-6 subtitle">{{ course.courseGrade.projectWeight }}% of grade</h6>
+        <h6 class="is-6 subtitle">{{ course.userCourseGrade.projectWeight }}% of grade</h6>
         <template v-if="projects.length > 0">
           <table class="table">
             <thead>
@@ -61,7 +61,7 @@
       </div>
       <div class="column">
         <h1 class="is-3 title">Exams</h1>
-        <h6 class="is-6 subtitle">{{ course.courseGrade.examWeight }}% of grade</h6>
+        <h6 class="is-6 subtitle">{{ course.userCourseGrade.examWeight }}% of grade</h6>
         <template v-if="exams.length > 0">
           <table class="table">
             <thead>
@@ -89,7 +89,7 @@
         </template>
       </div>
       <div class="column is-full is-centered">
-        <h4 class="title is-4">Overall grade: {{ course.courseGrade.classAverage }}%</h4>
+        <h4 class="title is-4">Overall grade: {{ course.userCourseGrade.classAverage }}%</h4>
       </div>
     </div>
   </div>

@@ -20,7 +20,7 @@
                 <td>{{ assignment.name }}</td>
                 <td>{{ assignment.earnedPoints }}</td>
                 <td>{{ assignment.possiblePoints }}</td>
-                <td><b>{{ Math.round((assignment.earnedPoints / assignment.possiblePoints) * 100) }}%</b></td>
+                <td><b>{{ Math.round((assignment.earnedPoints / assignment.possiblePoints) * 100) || 0 }}%</b></td>
               </tr>
             </template>
             </tbody>
@@ -38,8 +38,8 @@
             <thead>
             <tr>
               <td>Name</td>
-              <td>Possible</td>
               <td>Earned</td>
+              <td>Possible</td>
               <td>Percent</td>
             </tr>
             </thead>
@@ -47,9 +47,9 @@
             <template v-for="assignment in projects">
               <tr>
                 <td>{{ assignment.name }}</td>
-                <td>{{ assignment.possiblePoints }}</td>
                 <td>{{ assignment.earnedPoints }}</td>
-                <td><b>{{ Math.round((assignment.earnedPoints / assignment.possiblePoints) * 100) }}%</b></td>
+                <td>{{ assignment.possiblePoints }}</td>
+                <td><b>{{ Math.round((assignment.earnedPoints / assignment.possiblePoints) * 100) || 0 }}%</b></td>
               </tr>
             </template>
             </tbody>
@@ -67,8 +67,8 @@
             <thead>
             <tr>
               <td>Name</td>
-              <td>Possible</td>
               <td>Earned</td>
+              <td>Possible</td>
               <td>Percent</td>
             </tr>
             </thead>
@@ -76,9 +76,9 @@
             <template v-for="assignment in exams">
               <tr>
                 <td>{{ assignment.name }}</td>
-                <td>{{ assignment.possiblePoints }}</td>
                 <td>{{ assignment.earnedPoints }}</td>
-                <td><b>{{ Math.round((assignment.earnedPoints / assignment.possiblePoints) * 100) }}%</b></td>
+                <td>{{ assignment.possiblePoints }}</td>
+                <td><b>{{ Math.round((assignment.earnedPoints / assignment.possiblePoints) * 100) || 0 }}%</b></td>
               </tr>
             </template>
             </tbody>
@@ -129,11 +129,10 @@
       assignmentsWithGrade: function () {
         let assignmentsWithGrade = [];
         Helpers.objectToArray(this.courseAssignments).forEach(function (assignment) {
-          if (assignment.hasOwnProperty('graded')) {
-            if (assignment.graded) {
+          console.log(assignment);
+            if (Object.getOwnPropertyDescriptor(assignment, 'graded')) {
               assignmentsWithGrade.push(assignment);
             }
-          }
         });
         return assignmentsWithGrade;
       },
